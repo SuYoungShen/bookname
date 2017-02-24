@@ -66,6 +66,14 @@
           </thead>
           <tbody>
             <?php
+              $Language = array();// 語言
+              $LanUrl = array();// 語言網址
+              $Technology = array();// 科技
+              $TecUrl = array();// 科技網址
+              $Tour = array();// 旅遊
+              $TourUrl = array();// 旅遊網址
+              $Other = array();// 其他
+              $OtherUrl = array();// 其他網址
 
             foreach ($Display as $key => $value) {
 
@@ -76,44 +84,61 @@
                 switch ($Types) {
 
                   case '語言學習類':
-                  $Language = array($key=>$BookName)
-                    array_push($Language,);//語言
+                    array_push($Language, $BookName);//新的書名加在陣列後面
+                    array_push($LanUrl,$Url);//新的網址加在陣列後面
                     break;
 
                   case '商業類、科技類':
-                   $Technology = array($BookName);//Technology科技
+                    array_push($Technology, $BookName);
+                    array_push($TecUrl,$Url);//新的網址加在陣列後面
                     break;
 
                   case '旅遊、時尚流行類':
-                   $Tour = array($BookName);//Tour旅遊
+                    array_push($Tour, $BookName);
+                    array_push($TourUrl,$Url);//新的網址加在陣列後面
                   break;
 
                   case '人文藝術、其它類':
-                   $Other = array($BookName);//Other其他
+                    array_push($Other, $BookName);
+                    array_push($OtherUrl,$Url);//新的網址加在陣列後面
                   break;
 
                   default:
                     # code...
                     break;
                 }
+              }//foreach
 
+              echo $count = count($Other);
+
+              for ($i=0; $i < $count ; $i++) {
+                echo "
+                  <tr>
+                    <td></td>
+                    <td><a href='$LanUrl[$i]'>$Language[$i]</a></td>
+                    <td><a href='$TecUrl[$i]'>$Technology[$i]</a></td>
+                    <td><a href='$TourUrl[$i]'>$Tour[$i]</a></td>
+                    <td><a href='$OtherUrl[$i]'>$Other[$i]</a></td>
+                  </tr>
+                ";
               }
+
               // $result = array_unique($input);
               // print_r($result);
 
 
-              var_dump($lan);
-              foreach ($Language as $key => $value) {
-                echo "
-                <tr>
-                  <td></td>
-                  <td>$value[$key]</td>
-                  <td>$Technology[0]</td>
-                  <td>$Tour[0]</td>
-                  <td>$Other[0]</td>
-                </tr>
-                ";
-              }
+              // var_dump($lan);
+              // foreach ($Language as $key => $value) {
+              //   echo "
+              //   <tr>
+              //     <td></td>
+              //     <td>$value[$key]</td>
+              //     <td>$Technology[0]</td>
+              //     <td>$Tour[0]</td>
+              //     <td>$Other[0]</td>
+              //   </tr>
+              //   ";
+              // }
 
 
              ?>

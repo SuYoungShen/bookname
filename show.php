@@ -43,10 +43,8 @@
   </head>
   <body>
     <?php
-      include 'action/select.php';   
+      include 'action/select.php';
      ?>
-
-
     <div class="container-fluid">
       <form class="form-horizontal" role="form" method="get">
         <div class="form-group">

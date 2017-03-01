@@ -43,7 +43,9 @@
   </head>
   <body>
     <?php
+      // 查詢指令
       include 'action/select.php';
+      // 查詢指令
      ?>
     <div class="container-fluid">
       <form class="form-horizontal" role="form" method="get">

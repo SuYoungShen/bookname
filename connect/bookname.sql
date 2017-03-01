@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
--- 主機: 127.0.0.1
--- 產生時間： 2017-02-24 10:55:41
--- 伺服器版本: 10.1.21-MariaDB
--- PHP 版本： 7.1.1
+-- 主機: localhost
+-- 產生時間： 2017 年 03 月 01 日 13:51
+-- 伺服器版本: 10.1.19-MariaDB
+-- PHP 版本： 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -39,14 +39,16 @@ CREATE TABLE `bookname` (
 --
 
 INSERT INTO `bookname` (`id`, `types`, `bookname`, `url`, `datetime`) VALUES
-(67, '語言學習類', 'ssss', 'https://github.com/SuYoungShen/bookname', 2017),
-(68, '商業類、科技類', 'ccc', 'https://github.com/SuYoungShen/bookname', 2017),
-(69, '商業類、科技類', 'sdsd', 'https://github.com/SuYoungShen/bookname', 2017),
-(70, '商業類、科技類', 'aaaaa', 'https://github.com/SuYoungShen/bookname', 2017),
-(71, '旅遊、時尚流行類', 'ㄎ', 'http://php.net/manual/en/language.types.array.php', 2017),
-(72, '語言學習類', 'sss', 'http://php.net/manual/en/language.types.array.php', 2017),
-(73, '人文藝術、其它類', 'ss', 'http://php.net/manual/en/language.types.array.php', 2017),
-(74, '語言學習類', 'sddd', 'http://php.net/manual/en/language.types.array.php', 2017);
+(76, '商業類、科技類', 'b0', 'https://tw.yahoo.com/', 2017),
+(78, '商業類、科技類', 'b1', 'https://tw.yahoo.com/', 2017),
+(80, '商業類、科技類', 'b2', 'https://tw.yahoo.com/', 2017),
+(81, '旅遊、時尚流行類', 'c0', 'https://tw.yahoo.com/', 2017),
+(82, '人文藝術、其它類', 'd0', 'https://tw.yahoo.com/', 2017),
+(83, '旅遊、時尚流行類', 'C1', 'https://tw.yahoo.com/', 2017),
+(84, '旅遊、時尚流行類', 'c2', 'https://tw.yahoo.com/', 2017),
+(85, '人文藝術、其它類', 'd1', 'https://tw.yahoo.com/', 2017),
+(86, '人文藝術、其它類', 'd2', 'https://tw.yahoo.com/', 2017),
+(88, '人文藝術、其它類', 'c', 'https://tw.yahoo.com/', 2017);
 
 --
 -- 已匯出資料表的索引
@@ -66,7 +68,7 @@ ALTER TABLE `bookname`
 -- 使用資料表 AUTO_INCREMENT `bookname`
 --
 ALTER TABLE `bookname`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

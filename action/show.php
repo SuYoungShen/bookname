@@ -70,6 +70,7 @@ foreach ($Display as $key => $value) {
  $Sort = compare($Data, 'desc');
  //把Data丟到compare函示去排序,desc由大到小
 
+ // 顯示所有資料,當td被觸及時,可以做更新資料
   for ($i=0; $i < $Sort[0] ; $i++) {
     echo "
     <tr>
@@ -83,7 +84,7 @@ foreach ($Display as $key => $value) {
     </tr>
     ";
   }
-
+// 顯示所有資料,當td被觸及時,可以做更新資料
 
  ?>
  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button>
@@ -91,12 +92,13 @@ foreach ($Display as $key => $value) {
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@twbootstrap">Open modal for @twbootstrap</button>
 ...more buttons... -->
 <script type="text/javascript">
-  function edit(id, test, url){
+  function edit(id, bookname, url){
     document.getElementById("id").value = id;
-    document.getElementById("recipient-name").value = test;
-    document.getElementById("message-text").value = url;
+    document.getElementById("BookName").value = bookname;
+    document.getElementById("url").value = url;
   }
 </script>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -105,15 +107,17 @@ foreach ($Display as $key => $value) {
         <h4 class="modal-title" id="exampleModalLabel">更新資料</h4>
       </div>
       <div class="modal-body">
-        <form role="form" action="t.php" method="post">
+        <form role="form" action="action/update.php" method="post">
           <div class="form-group">
             <label for="recipient-name" class="control-label">書名:</label>
-            <input type="text" name="id" id=id>
-            <input type="text" class="form-control" id="recipient-name" name="BookName">
+            <input type="hidden" name="id" id=id>
+            <input type="text" class="form-control" id="BookName" name="BookName">
           </div>
           <div class="form-group">
             <label for="message-text" class="control-label">網址:</label>
-            <input type="text" class="form-control" id="message-text" name="Url">
+            <input type="text" class="form-control" id="url" name="Url">
+            <button type="submit" class="btn btn-primary">送出</button>
+
           </div>
         </form>
       </div>

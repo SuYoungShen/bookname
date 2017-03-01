@@ -10,22 +10,43 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"> </script>
+    <!-- <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"> </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"> </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"> </script> -->
+    <script type="text/javascript" src="js/excellentexport.min.js">
+
+    </script>
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+        <script type="text/javascript">
+
+        $(document).ready(function() {
+          $('#datatable').DataTable();
+        });
+        </script>
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body>
     <?php
-      include 'action/select.php';
-
-      if (isset($_GET['action']) && $_GET["action"] == 'excel') {
-          header('Content-type:application/vnd.ms-excel');  //宣告網頁格式
-          header('Content-Disposition: attachment; filename=myexcel.xls');  //設定檔案名稱
-      }
+      include 'action/select.php';   
      ?>
+
+
     <div class="container-fluid">
       <form class="form-horizontal" role="form" method="get">
         <div class="form-group">
@@ -37,6 +58,7 @@
             </button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
               <?php
+                //$DisDate從action/select.php的檔案出來
                 foreach ($DisDate as $key => $value) {
                   $v = $value["datetime"];
                   if (!empty($v)) {
@@ -54,7 +76,8 @@
       </form>
 
       <div class="table-responsive">
-        <table class="table table-hover table-bordered">
+        <!-- <table class="table table-hover table-bordered"> -->
+          <table id="datatable" class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%">
           <thead>
             <tr>
               <td><?php echo $datetime; ?></td>
@@ -65,88 +88,12 @@
             </tr>
           </thead>
           <tbody>
-            <?php
-              $Language = array();// 語言
-              $LanUrl = array();// 語言網址
-              $Technology = array();// 科技
-              $TecUrl = array();// 科技網址
-              $Tour = array();// 旅遊
-              $TourUrl = array();// 旅遊網址
-              $Other = array();// 其他
-              $OtherUrl = array();// 其他網址
-
-            foreach ($Display as $key => $value) {
-
-              $Types = $value["types"];//類型
-              $BookName = $value["bookname"];//收件人
-              $Url = $value["url"];//地址
-
-                switch ($Types) {
-
-                  case '語言學習類':
-                    array_push($Language, $BookName);//新的書名加在陣列後面
-                    array_push($LanUrl,$Url);//新的網址加在陣列後面
-                    break;
-
-                  case '商業類、科技類':
-                    array_push($Technology, $BookName);
-                    array_push($TecUrl,$Url);//新的網址加在陣列後面
-                    break;
-
-                  case '旅遊、時尚流行類':
-                    array_push($Tour, $BookName);
-                    array_push($TourUrl,$Url);//新的網址加在陣列後面
-                  break;
-
-                  case '人文藝術、其它類':
-                    array_push($Other, $BookName);
-                    array_push($OtherUrl,$Url);//新的網址加在陣列後面
-                  break;
-
-                  default:
-                    # code...
-                    break;
-                }
-              }//foreach
-
-              echo $count = count($Other);
-
-              for ($i=0; $i < $count ; $i++) {
-                echo "
-                  <tr>
-                    <td></td>
-                    <td><a href='$LanUrl[$i]'>$Language[$i]</a></td>
-                    <td><a href='$TecUrl[$i]'>$Technology[$i]</a></td>
-                    <td><a href='$TourUrl[$i]'>$Tour[$i]</a></td>
-                    <td><a href='$OtherUrl[$i]'>$Other[$i]</a></td>
-                  </tr>
-                ";
-              }
-
-              // $result = array_unique($input);
-              // print_r($result);
-
-
-              // var_dump($lan);
-              // foreach ($Language as $key => $value) {
-              //   echo "
-              //   <tr>
-              //     <td></td>
-              //     <td>$value[$key]</td>
-              //     <td>$Technology[0]</td>
-              //     <td>$Tour[0]</td>
-              //     <td>$Other[0]</td>
-              //   </tr>
-              //   ";
-              // }
-
-
-             ?>
+            <?php include 'action/show.php'; ?>
           </tbody>
         </table>
         <form class="form-horizontal" role="form">
           <a href="index.php"><button type="button" class="btn btn-default" name="button">返回</button></a>
-          <button type="submit" name="action" value="excel" class="btn btn-default">匯出excel</button>
+          <button type="submit" name="action" value="excel" class="btn btn-default"><a download="somedata.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');">匯出EXCEL</a></button>
           <a href="action/delete.php?detoday=yes">
             <button type="button" class="pull-right btn btn-default" name="Detoday">刪除當天資料</button>
           </a>
@@ -158,7 +105,7 @@
       $db = null;
      ?>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   </body>

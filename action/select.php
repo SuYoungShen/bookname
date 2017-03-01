@@ -15,10 +15,10 @@
   $Display = $Query->fetchAll();
   //以日期當條件,取得全部資料
 
-  //顯示日期
+  //顯示日期,以日期下去做排序
   $SeDate = "SELECT datetime FROM bookname GROUP BY datetime";
   $QuDate = $db->query($SeDate);
   $DisDate = $QuDate->fetchAll();
-  //顯示日期
+  //顯示日期,以日期下去做排序
 
  ?>

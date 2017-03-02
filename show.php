@@ -92,10 +92,17 @@
           </tbody>
         </table>
         <form class="form-horizontal" role="form">
-          <a href="index.php"><button type="button" class="btn btn-default" name="button">返回</button></a>
-          <button type="submit" name="action" value="excel" class="btn btn-default"><a download="somedata.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');">匯出EXCEL</a></button>
+
+          <a href="index.php">
+            <button type="button" class="btn btn-default" name="button">返回</button>
+          </a>
+
+          <button type="submit" name="action" value="excel" class="btn btn-default">
+            <a download="somedata.xls" href="#" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');">匯出EXCEL</a>
+          </button>
+
           <a href="action/delete.php?detoday=yes">
-            <button type="button" class="pull-right btn btn-default" name="Detoday">刪除當天資料</button>
+            <button type="button" class=" btn btn-danger" name="Detoday">刪除去年資料</button>
           </a>
         </form>
       </div>

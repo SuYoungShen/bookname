@@ -11,11 +11,11 @@
 
   $Tour = array();// 旅遊
   $TourUrl = array();// 旅遊網址
-  $TourID = array();// 旅遊ID
+  $TourId = array();// 旅遊ID
 
   $Other = array();// 其他
   $OtherUrl = array();// 其他網址
-  $OtherID = array();// 其他ID
+  $OtherId = array();// 其他ID
 
 foreach ($Display as $key => $value) {
   $id = $value["id"];//id
@@ -32,19 +32,19 @@ foreach ($Display as $key => $value) {
         break;
 
       case '商業類、科技類':
-        array_push($TecID,$id);
+        array_push($TecId,$id);
         array_push($Technology, $BookName);
         array_push($TecUrl,$Url);//新的網址加在陣列後面
         break;
 
       case '旅遊、時尚流行類':
-        array_push($TourID, $id);
+        array_push($TourId, $id);
         array_push($Tour, $BookName);
         array_push($TourUrl,$Url);//新的網址加在陣列後面
       break;
 
       case '人文藝術、其它類':
-        array_push($OtherID, $id);
+        array_push($OtherId, $id);
         array_push($Other, $BookName);
         array_push($OtherUrl,$Url);//新的網址加在陣列後面
       break;
@@ -78,9 +78,15 @@ foreach ($Display as $key => $value) {
       <td data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo' onclick='edit(\"$LanId[$i]\",\"$Language[$i]\", \"$LanUrl[$i]\")'>
         <a href='$LanUrl[$i]'>$Language[$i]</a>
         </td>
-      <td><a href='$TecUrl[$i]'>$Technology[$i]</a></td>
-      <td><a href='$TourUrl[$i]'>$Tour[$i]</a></td>
-      <td><a href='$OtherUrl[$i]'>$Other[$i]</a></td>
+
+      <td data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo' onclick='edit(\"$TecId[$i]\",\"$Technology[$i]\", \"$TecUrl[$i]\")'><a href='$TecUrl[$i]'>$Technology[$i]</a>
+      </td>
+
+      <td  data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo' onclick='edit(\"$TourId[$i]\",\"$Tour[$i]\", \"$TourUrl[$i]\")'><a href='$TourUrl[$i]'>$Tour[$i]</a>
+      </td>
+
+      <td  data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo' onclick='edit(\"$OtherId[$i]\",\"$Other[$i]\", \"$OtherUrl[$i]\")'><a href='$OtherUrl[$i]'>$Other[$i]</a>
+      </td>
     </tr>
     ";
   }
@@ -106,8 +112,8 @@ foreach ($Display as $key => $value) {
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="exampleModalLabel">更新資料</h4>
       </div>
-      <div class="modal-body">
-        <form role="form" action="action/update.php" method="post">
+      <form role="form" action="action/update.php" method="post">
+        <div class="modal-body">
           <div class="form-group">
             <label for="recipient-name" class="control-label">書名:</label>
             <input type="hidden" name="id" id=id>
@@ -116,15 +122,14 @@ foreach ($Display as $key => $value) {
           <div class="form-group">
             <label for="message-text" class="control-label">網址:</label>
             <input type="text" class="form-control" id="url" name="Url">
-            <button type="submit" class="btn btn-primary">送出</button>
-
           </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">送出</button>
-      </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" name="Up" class="btn btn-primary">送出</button>
+          <button type="submit" name="De" class="btn btn-danger pull-left">刪除</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

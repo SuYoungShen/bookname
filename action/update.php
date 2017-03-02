@@ -1,23 +1,34 @@
 <?php
   include '../connect/connect.php';
 
-
   $id = (isset($_POST["id"]) && !empty($_POST["id"]))?$_POST["id"]:"";
   $bookname = (isset($_POST["BookName"]) && !empty($_POST["BookName"]))?$_POST["BookName"]:"";//書名
   $url = (isset($_POST["Url"]) && !empty($_POST["Url"]))?$_POST["Url"]:"";//網址
 
-  if (empty($bookname) && empty($url)) {
+
+  if (isset($_POST["De"])) {//點擊刪除會執行這行
     $true = $db->query(del($id));
     $Msg = "刪除";
-  }else {
+  }else if(isset($_POST["Up"])){//點擊更新會執行這行
     $true = $db->query(update($id, $bookname, $url));
     $Msg = "更新";
   }
 
   if ($true) {
-    echo $Msg."成功";
+    message($Msg, "成功");
   }else {
-    echo $Msg."失敗";
+    message($Msg, "失敗");
+  }
+
+  function message($msg, $how){
+    echo "
+          <script>
+            msg = '$msg';
+            how = '$how';
+            alert(msg+how);
+            document.location.href='../show.php';
+          </script>
+          ";
   }
 
   function update($id, $bookname, $url){

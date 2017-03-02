@@ -3,7 +3,8 @@
 
   // // 值存入指定變數
   $Types = $_POST["types"];//書的類型
-  $BookName = $_POST["BookName"];//書名
+  $BookName = trim($_POST["BookName"]);//書名
+  // $Url = trim($_POST["Url"]);//網址
   $Url = $_POST["Url"];//網址
 
   date_default_timezone_set('Asia/Taipei');//設定時間為台北

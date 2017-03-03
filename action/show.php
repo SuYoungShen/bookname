@@ -70,7 +70,7 @@ foreach ($Display as $key => $value) {
  $Sort = compare($Data, 'desc');
  //把Data丟到compare函示去排序,desc由大到小
 
- // 顯示所有資料,當td被觸及時,可以做更新資料
+ // 顯示所有資料,當td被觸及時,可以做更新資料(action/update.php)
   for ($i=0; $i < $Sort[0] ; $i++) {
     echo "
     <tr>
